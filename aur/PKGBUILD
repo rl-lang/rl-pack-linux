@@ -23,6 +23,6 @@ package() {
   done
   install -Dm644 man/rl.1 "$pkgdir/usr/share/man/man1/rl.1"
   install -Dm644 man/rl.info "$pkgdir/usr/share/info/rl.info"
-  install -Dm644 LICENSE-MIT "$pkgdir/usr/share/licenses/$pkgname/LICENSE-MIT"
-  install -Dm644 LICENSE-APACHE "$pkgdir/usr/share/licenses/$pkgname/LICENSE-APACHE"
+  install -Dm644 LICENSE-MIT.md "$pkgdir/usr/share/licenses/$pkgname/LICENSE-MIT.md"
+  install -Dm644 LICENSE-APACHE.md "$pkgdir/usr/share/licenses/$pkgname/LICENSE-APACHE.md"
 }

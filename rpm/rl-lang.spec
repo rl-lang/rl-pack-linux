@@ -30,7 +30,7 @@ install -Dm644 man/rl.1 %{buildroot}%{_mandir}/man1/rl.1
 install -Dm644 man/rl.info %{buildroot}%{_infodir}/rl.info
 
 %files
-%license LICENSE-MIT LICENSE-APACHE
+%license LICENSE-MIT.md LICENSE-APACHE.md
 %doc README.md CHANGELOG.md
 %{_bindir}/rl
 %{_bindir}/rlc
