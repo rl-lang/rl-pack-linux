@@ -1,0 +1,20 @@
+Source: rl-lang
+Section: devel
+Priority: optional
+Maintainer: rl-lang maintainers <https://github.com/rl-lang/rl-lang/issues>
+Build-Depends: debhelper (>= 13), cargo, rustc, pkg-config
+Standards-Version: 4.6.2
+Homepage: https://github.com/rl-lang/rl-lang
+Vcs-Browser: https://github.com/rl-lang/rl-lang
+Vcs-Git: https://github.com/rl-lang/rl-lang.git
+Rules-Requires-Root: no
+Package: rl-lang
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Programming language with first-class VM and C transpiler
+ rl-lang is a modern programming language featuring a bytecode VM and
+ C transpilation. It includes a REPL, language server, and standard
+ library.
+ .
+ This package contains rl, rlc, rlt, rlrepl, rlsp, rldocs, rlm,
+ and related tools.

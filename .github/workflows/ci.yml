@@ -1,0 +1,19 @@
+name: ci
+on:
+  push:
+  pull_request:
+jobs:
+  versions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Versions agree
+        run: ./bump.sh --check
+      - name: YAML parses
+        run: python3 -c "import yaml,glob; [yaml.safe_load(open(f)) for f in ['snap/snapcraft.yaml','flatpak/io.github.rl-lang.rl.yml']]"
+      - name: Shell syntax
+        run: bash -n bump.sh
+      - name: PKGBUILD syntax
+        run: bash -n aur/PKGBUILD
+      - name: Spec has all binaries
+        run: for b in rl rlc rlt rlrepl rlsp rldocs rlm; do grep -q "bindir}/$b" rpm/rl-lang.spec || exit 1; done
