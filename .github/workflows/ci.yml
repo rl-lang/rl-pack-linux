@@ -12,7 +12,7 @@ jobs:
       - name: YAML parses
         run: python3 -c "import yaml,glob; [yaml.safe_load(open(f)) for f in ['snap/snapcraft.yaml','flatpak/io.github.rl-lang.rl.yml']]"
       - name: Shell syntax
-        run: bash -n bump.sh
+        run: bash -n bump.sh && bash -n fetch-hashes.sh
       - name: PKGBUILD syntax
         run: bash -n aur/PKGBUILD
       - name: Spec has all binaries

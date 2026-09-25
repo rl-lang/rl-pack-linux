@@ -1,7 +1,7 @@
 # Publishing (Linux)
 
-Step-by-step notes for each target. Run `./bump.sh <version>` first,
-then follow the section you need.
+Step-by-step notes for each target. Run `./bump.sh <version>` and
+`./fetch-hashes.sh <version>` first, then follow the section you need.
 
 ## Debian / Ubuntu (PPA)
 
@@ -21,8 +21,9 @@ then follow the section you need.
 
 ## Arch Linux (AUR)
 
-1. Test locally: `cd aur && makepkg -si`
-2. Push to the AUR:
+1. Regenerate metadata: `cd aur && makepkg --printsrcinfo > .SRCINFO`
+2. Test locally: `makepkg -si`
+3. Push to the AUR:
    ```
    git clone ssh://aur@aur.archlinux.org/rl-lang.git
    cp aur/PKGBUILD rl-lang/
@@ -35,12 +36,14 @@ then follow the section you need.
 
 ## Gentoo
 
-1. Set up an overlay (e.g. with `eselect repository`).
-2. Copy `gentoo/rl-lang-9999.ebuild` into your overlay's
-   `dev-lang/rl-lang/`.
-3. Manifest: `ebuild rl-lang-9999.ebuild manifest`
-4. Test: `emerge --pretend rl-lang`
-5. Push your overlay to GitHub.
+`gentoo/` is a complete overlay tree. Copy it into place:
+
+1. `cp -r gentoo /var/db/repos/rl-pack-linux` (or into your own
+   overlay's root).
+2. Manifest: `ebuild /var/db/repos/rl-pack-linux/dev-lang/rl-lang/rl-lang-9999.ebuild manifest`
+3. Test: `emerge --pretend rl-lang`
+4. To register it with eselect, add a repos.conf entry pointing
+   `location` at the copy.
 
 For a versioned release ebuild, copy the 9999 ebuild to
 `rl-lang-<version>.ebuild`, drop the git source, and use a tarball
@@ -70,6 +73,8 @@ nix run github:rl-lang/rl-pack-linux
 3. Test: `sudo snap install rl_*.snap --classic`
 4. Publish: `snapcraft login` then `snapcraft upload rl_*.snap`
 5. Users install: `sudo snap install rl --classic`
+   (if the `rl` name is taken in the store, register `rl-lang` and
+   rename `name:` in `snapcraft.yaml`).
 
 ## Flatpak
 

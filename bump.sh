@@ -9,6 +9,7 @@ fail() { echo "bump: $*" >&2; exit 1; }
 
 versions() {
   echo "aur $(grep -m1 '^pkgver=' aur/PKGBUILD | cut -d= -f2)"
+  echo "srcinfo $(grep -m1 '^	pkgver = ' aur/.SRCINFO | awk '{print $3}')"
   echo "rpm $(grep -m1 '^Version:' rpm/rl-lang.spec | awk '{print $2}')"
   echo "nix $(grep -m1 'version = ' nix/rl-lang.nix | cut -d'"' -f2)"
   echo "snap $(grep -m1 '^version:' snap/snapcraft.yaml | awk '{print $2}')"
