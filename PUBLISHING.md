@@ -29,7 +29,7 @@ Step-by-step notes for each target. Run `./bump.sh <version>` and
    cp aur/PKGBUILD rl-lang/
    cd rl-lang
    makepkg -si  # test
-   git add -A && git commit -m "v2.2.1"
+   git add -A && git commit -m "v2.3.0"
    git push
    ```
 3. Users install: `yay -S rl-lang` or `paru -S rl-lang`

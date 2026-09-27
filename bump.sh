@@ -32,6 +32,8 @@ ver="${1:?usage: ./bump.sh <version> | --check}"
 date_rfc="$(date -u '+%a, %d %b %Y %H:%M:%S +0000')"
 
 sed -i "s/^pkgver=.*/pkgver=$ver/" aur/PKGBUILD
+sed -i "s/^\tpkgver = .*/\tpkgver = $ver/" aur/.SRCINFO
+sed -i "s|archive/v.*/rl-lang-|archive/v$ver/rl-lang-|" aur/.SRCINFO
 sed -i "s/^Version:.*/Version:        $ver/" rpm/rl-lang.spec
 sed -i "s/version = \".*\";/version = \"$ver\";/" nix/rl-lang.nix
 sed -i "s/^version:.*/version: $ver/" snap/snapcraft.yaml
@@ -59,5 +61,6 @@ awk -v day="$day" -v ver="$ver" '
 mv rpm/rl-lang.spec.new rpm/rl-lang.spec
 
 echo "bump: updated to $ver"
+echo "bump: now run ./fetch-hashes.sh $ver once the release exists"
 echo "bump: only remaining manual step is nix cargoHash (run one nix build, it prints the right value)"
 ./bump.sh --check

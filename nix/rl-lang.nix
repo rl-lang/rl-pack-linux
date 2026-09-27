@@ -9,13 +9,13 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "rl-lang";
-  version = "2.2.1";
+  version = "2.3.0";
 
   src = fetchFromGitHub {
     owner = "rl-lang";
     repo = "rl-lang";
     rev = "v${version}";
-    hash = "sha256-VFdxXnfXqGy4MEsmmghl0eyi+Uwb8fAqzWtV8AMffWo=";
+    hash = "sha256-ebmAx5vjmjuJ9fF0kBq0CXAq57YiM8+vzsq81UO8YK4=";
   };
 
   cargoHash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="; # update with actual hash
